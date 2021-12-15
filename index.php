@@ -80,6 +80,7 @@ $base_wa = "http://fekusa.xyz:4000";
         </div>
         <div class="wrap-input1 validate-input" data-validate = "Message is required">
           <textarea class="input1" name="message" id="message" placeholder="Tulis Pesan Disini" required=""></textarea>
+          <input type="checkbox" name="urlchecked" id="urlchecked"/> Is Url ?
           <span class="shadow-input1"></span>
         </div>
         <div class="wrap-input1 validate-input" data-validate = "Number is required">
@@ -158,6 +159,9 @@ $base_wa = "http://fekusa.xyz:4000";
   $('.js-tilt').tilt({
     scale: 1.1
   })
+  function checkerurl(){
+      return $("#urlchecked:checked").length;
+  }
   // Cek Status Wa
   setInterval(getstatus, 5000);
   // setInterval(scanqr, 3000);
@@ -219,6 +223,12 @@ $base_wa = "http://fekusa.xyz:4000";
     }
   }
   function senddata(){
+    var checker = checkerurl();
+    if(checker === 1){
+        var datachecker = "url";
+    }else{
+        var datachecker = "nonurl";
+    }
     $("#buttonsenda").hide();
     $("#buttonsendd").show();
     var number = $("#number").val();
@@ -228,7 +238,7 @@ $base_wa = "http://fekusa.xyz:4000";
     $.ajax({
       type: 'POST',
       url: "./senddata.php",
-      data: {number:number,message:message,file:file_url,caption:caption},
+      data: {number:number,message:message,file:file_url,caption:caption,checker:datachecker},
     }).done(function(data) {
       obj = JSON.parse(data);
       if(obj.status === true){
