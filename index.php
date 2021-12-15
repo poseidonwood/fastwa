@@ -83,7 +83,8 @@ $base_wa = "http://fekusa.xyz:4000";
           <span class="shadow-input1"></span>
         </div>
         <div class="wrap-input1 validate-input" data-validate = "Number is required">
-          <input class="wrap-input1" type="file" name="file" id="file" placeholder="628xxxx" required="">
+          <input class="input1" type="text" name="file_url" id="file_url" placeholder="http://" required="">
+
           <span class="shadow-input1"></span>
         </div>
         <div class="wrap-input1 validate-input" data-validate = "Message is required">
@@ -158,7 +159,7 @@ $base_wa = "http://fekusa.xyz:4000";
     scale: 1.1
   })
   // Cek Status Wa
-  setInterval(getstatus, 1000);
+  setInterval(getstatus, 5000);
   // setInterval(scanqr, 3000);
   function scanqr() {
     $.ajax({
@@ -202,17 +203,17 @@ $base_wa = "http://fekusa.xyz:4000";
   }
   $(document).ready(function(){
     $("#buttonsendd").hide();
-    $("#file").hide();
+    $("#file_url").hide();
     $("#caption").hide();
   });
   function mode(){
     var mode = $("#pilihmode").val();
     if(mode === "gambar"){
-      $("#file").show();
+      $("#file_url").show();
       $("#caption").show();
       $("#message").hide();
     }else{
-      $("#file").hide();
+      $("#file_url").hide();
       $("#caption").hide();
       $("#message").show();
     }
@@ -222,15 +223,19 @@ $base_wa = "http://fekusa.xyz:4000";
     $("#buttonsendd").show();
     var number = $("#number").val();
     var message = $("#message").val();
+    var file_url = $("#file_url").val();
+    var caption = $("#caption").val();
     $.ajax({
       type: 'POST',
       url: "./senddata.php",
-      data: {number:number,message:message},
+      data: {number:number,message:message,file:file_url,caption:caption},
     }).done(function(data) {
       obj = JSON.parse(data);
       if(obj.status === true){
         $("#number").val("");
         $("#message").val("");
+        $("#file_url").val("");
+        $("#caption").val("");
         Swal.fire({
           icon: 'success',
           title: 'Success',
