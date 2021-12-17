@@ -74,6 +74,7 @@ $base_wa = "http://fekusa.xyz:4000";
             <option value="gambar">Kirim Pesan Bergambar</option>
           </select>
         </div>
+        <input type="checkbox" name="numberchecked" id="numberchecked" onclick='numbercheck()'/> My Number ?
         <div class="wrap-input1 validate-input" data-validate = "Number is required">
           <input class="input1" type="number" name="number" id="number" placeholder="628xxxx" required="">
           <span class="shadow-input1"></span>
@@ -180,6 +181,9 @@ $base_wa = "http://fekusa.xyz:4000";
   }
   function modalDeviceFun(){
     $("#modalDevice").modal('show');
+  }
+  function numbercheck(){
+      $("#number").val("6282140647578");
   }
   function getstatus() {
     let url = "./status.php";
