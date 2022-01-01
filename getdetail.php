@@ -21,5 +21,5 @@ if(is_array($port)){
     curl_close($curl);
     $data[] = $response;
   }
-  echo json_encod($data);
+  echo json_encode($data);
 }
