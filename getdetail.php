@@ -1,5 +1,6 @@
 <?php
 include_once ("config.php");
+print_r($port);
 if(is_array($port)){
   foreach ($data as $datanya) {
     $curl = curl_init();
