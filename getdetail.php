@@ -19,6 +19,7 @@ if(is_array($port)){
     $response = curl_exec($curl);
 
     curl_close($curl);
-    echo $response;
+    $data[] = $response;
   }
+  echo json_encod($data);
 }
