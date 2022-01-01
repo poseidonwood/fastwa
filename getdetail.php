@@ -2,11 +2,11 @@
 include_once ("config.php");
 print_r($port);
 if(is_array($port)){
-  foreach ($data as $datanya) {
+  foreach ($data as $datanya => $key) {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => "http://fekusa.xyz:{$datanya}/getdetail",
+      CURLOPT_URL => "http://fekusa.xyz:{$key}/getdetail",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
