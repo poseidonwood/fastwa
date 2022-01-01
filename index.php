@@ -75,6 +75,7 @@ $base_wa = "http://fekusa.xyz:4000";
           </select>
         </div>
         <input type="checkbox" name="numberchecked" id="numberchecked" onclick='numbercheck()'/> My Number ?
+        <input type="checkbox" name="askjob" id="askjob" onclick='askjob()'/> Ask Job ?
         <div class="wrap-input1 validate-input" data-validate = "Number is required">
           <input class="input1" type="number" name="number" id="number" placeholder="628xxxx" required="">
           <span class="shadow-input1"></span>
@@ -184,6 +185,18 @@ $base_wa = "http://fekusa.xyz:4000";
   }
   function numbercheck(){
       $("#number").val("6282140647578");
+  }
+  function askjob(){
+      var template = `Selamat pagi Pak/Bu HR mohon maaf mengganggu waktunya , saya mau menanyakan info lowongan ini apa masih tersedia ?
+`;
+      var message = $("#message").val();
+      var caption = $("#caption").val();
+      var mode = $("#pilihmode").val();
+      if(mode === "gambar"){
+          $("#caption").val(template+caption);
+      }else{
+          $("#message").val(template+message);
+      }
   }
   function getstatus() {
     let url = "./status.php";

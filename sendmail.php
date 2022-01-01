@@ -1,4 +1,30 @@
 <?php
+//   require 'vendor/autoload.php';
+//   use \Mailjet\Resources;
+//   $mj = new \Mailjet\Client('a2dc11ca38b0e1a8a8fdd5b4158f9d58','a6ffc317992466d939e4804e850a4de9',true,['version' => 'v3.1']);
+//   $body = [
+//     'Messages' => [
+//       [
+//         'From' => [
+//           'Email' => "santosofebrikukuh@gmail.com",
+//           'Name' => "Febri Kukuh"
+//         ],
+//         'To' => [
+//           [
+//             'Email' => "santosofebrikukuh@gmail.com",
+//             'Name' => "Febri Kukuh"
+//           ]
+//         ],
+//         'Subject' => "Greetings from Mailjet.",
+//         'TextPart' => "My first Mailjet email",
+//         'HTMLPart' => "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!",
+//         'CustomID' => "AppGettingStartedTest"
+//       ]
+//     ]
+//   ];
+//   $response = $mj->post(Resources::$Email, ['body' => $body]);
+//   $response->success() && var_dump($response->getData());
+
 
 /**
  * This example shows settings to use when sending via Google's Gmail servers.
@@ -11,7 +37,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-require 'vendor/autoload.php';
+require './vendor/autoload.php';
 
 //Create a new PHPMailer instance
 $mail = new PHPMailer();
@@ -39,42 +65,35 @@ $mail->Port = 587;
 //Set the encryption mechanism to use:
 // - SMTPS (implicit TLS on port 465) or
 // - STARTTLS (explicit TLS on port 587)
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
 //Whether to use SMTP authentication
 $mail->SMTPAuth = true;
 
 //Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = 'santosofebrikukuh.office@gmail.com';
-
-//Password to use for SMTP authentication
-$mail->Password = 'poseidonwood2802';
+    $mail->Username = 'info.fekusa@gmail.com'; // YOUR gmail email
+    $mail->Password = 'poseidonwood2802'; // YOUR gmail password
 
 //Set who the message is to be sent from
 //Note that with gmail you can only use your account address (same as `Username`)
 //or predefined aliases that you have configured within your account.
 //Do not use user-submitted addresses in here
-$mail->setFrom('santosofebrikukuh.office@gmail.com', 'Febri');
-
-//Set an alternative reply-to address
-//This is a good place to put user-submitted addresses
-//$mail->addReplyTo('replyto@example.com', 'First Last');
-
-//Set who the message is to be sent to
-$mail->addAddress('santosofebrikukuh@gmail.com','Kukuh');
+    $mail->setFrom('info.fekusa@gmail.com', 'Info Fekusa');
+    $mail->addAddress('santosofebrikukuh.office@gmail.com', 'Febri Kukuh Santoso');
+    $mail->addReplyTo('santosofebrikukuh@gmail.com', 'Febri Kukuh Santoso'); // to set the reply to
 
 //Set the subject line
 $mail->Subject = 'PHPMailer GMail SMTP test';
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+// $mail->msgHTML(file_get_contents('contents.html'), __DIR__);
 
 //Replace the plain text body with one created manually
-$mail->AltBody = 'This is a plain-text message body';
+$mail->Body = 'This is a plain-text message body';
 
 //Attach an image file
-$mail->addAttachment('images/phpmailer_mini.png');
+// $mail->addAttachment('images/phpmailer_mini.png');
 
 //send the message, check for errors
 if (!$mail->send()) {
@@ -106,3 +125,4 @@ function save_mail($mail)
 
     return $result;
 }
+?>
