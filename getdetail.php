@@ -2,7 +2,7 @@
 include_once ("config.php");
 print_r($port);
 if(is_array($port)){
-  foreach ($data as $datanya => $key) {
+  foreach ($port as $datanya => $key) {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
